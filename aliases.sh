@@ -57,7 +57,7 @@ END
 # e.g. gg "syscall"
 #alias gg='git grep -ni'
 #alias todo='gg TODO'
-alias gtodo = 'grep -ni TODO *'
+alias gtodo='grep -ni -r TODO *'
 
 # Aliases to config, build, run, debug, and start gdb
 # kc and kb take a configuration file in kern/conf as an argument.
