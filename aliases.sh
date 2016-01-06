@@ -1,12 +1,15 @@
-# Useful aliases for cs161
+# Useful aliases for ece344
 
 os161-build() {
-    if [ -z "$1" ]; then
+    #check if 1st arg is empty string
+    if [ -z "$1" ]; then \
         echo "Usage: kbuild ASSTN"
         return 1
     fi
-    pushd "$HOME/cs161/os161/kern/compile/$1"
-    bmake -j4 && bmake install -s
+    # pushd: push to the stack and cd to arg directory
+    pushd "$HOME/ece344/os161/kern/compile/$1"
+    #bmake -j4 && bmake install -s #need to replace with our make
+    make depend && make && make install
     popd
 }
 
@@ -15,41 +18,46 @@ os161-config() {
         echo "Usage: kconfig ASSTN"
         return 1
     fi
-    pushd "$HOME/cs161/os161/kern/conf"
+    pushd "$HOME/ece344/os161/kern/conf"
     ./config "$1"
     popd
-    pushd "$HOME/cs161/os161/kern/compile/$1"
-    bmake -s -j4 depend
+    pushd "$HOME/ece344/os161/kern/compile/$1"
+    #bmake -s -j4 depend
+    make depend 
     popd
     os161-build "$1"
 }
 
 os161-run() {
-    bash -c "cd ~/cs161/root && sys161 kernel \"$@\""
+    bash -c "cd ~/ece344/root && sys161 kernel \"$@\""
 }
 
 os161-debug() {
-    bash -c "cd ~/cs161/root && sys161 -w kernel \"$@\""
+    bash -c "cd ~/ece344/root && sys161 -w kernel \"$@\""
 }
 
+#seems we dont need this 
+: <<'END'
 os161-user-build() {
     if [ "$1" ]; then
-        pushd "$HOME/cs161/os161/userland/$1"
+        pushd "$HOME/ece344/os161/userland/$1"
         bmake depend -s && bmake && bmake install
         return 0
     fi
-    pushd "$HOME/cs161/os161/"
+    pushd "$HOME/ece344/os161/"
     bmake -s
     popd
-    pushd "$HOME/cs161/os161/userland"
+    pushd "$HOME/ece344/os161/userland"
     bmake -s -j4 depend && bmake -s -j4 && bmake install -s -j4
     popd
 }
+END
 
 # Aliases for searching. Should run from top-level os161 directory
 # e.g. gg "syscall"
-alias gg='git grep -ni'
-alias todo='gg TODO'
+#alias gg='git grep -ni'
+#alias todo='gg TODO'
+alias gtodo = 'grep -ni TODO *'
 
 # Aliases to config, build, run, debug, and start gdb
 # kc and kb take a configuration file in kern/conf as an argument.
@@ -63,12 +71,12 @@ alias kr='os161-run'
 alias krun=kr
 alias kd='os161-debug'
 alias kdebug=kd
-alias kg='cd ~/cs161/root && os161-gdb kernel'
+alias kg='cd ~/ece344/root && os161-gdb kernel'
 alias kgdb=kg
-alias ub='os161-user-build'
-alias ubuild=ub
+#alias ub='os161-user-build'
+#alias ubuild=ub
 
 # Aliases to move to common directories
-alias cdk='cd $HOME/cs161/os161'
-alias cdr='cd $HOME/cs161/root'
-alias cdu='cd $HOME/cs161/os161/userland'
+alias cdk='cd $HOME/ece344/os161'
+alias cdr='cd $HOME/ece344/root'
+#alias cdu='cd $HOME/ece344/os161/userland'
