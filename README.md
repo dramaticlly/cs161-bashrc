@@ -1,15 +1,15 @@
-cs161-bashrc
+ece344-bashrc
 ============
 
-bashrc file for cs161 development
+bashrc file for ece344 development
 
 By Kenny Yu
 
 ## Install
 
     cd ~
-    git clone https://github.com/kennyyu/cs161-bashrc.git
-    cp ~/cs161-bashrc/bashrc ~/.bashrc && source ~/.bashrc
+    git clone git clone https://github.com/dramaticlly/ece344-bashrc.git 
+    cp ~/ece344-bashrc/bashrc ~/.bashrc && source ~/.bashrc
 
 ## Contents
 
