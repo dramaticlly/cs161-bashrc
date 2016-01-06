@@ -8,7 +8,7 @@ By Kenny Yu
 ## Install
 
     cd ~
-    git clone git clone https://github.com/dramaticlly/ece344-bashrc.git 
+    git clone https://github.com/dramaticlly/ece344-bashrc.git 
     cp ~/ece344-bashrc/bashrc ~/.bashrc && source ~/.bashrc
 
 ## Contents
