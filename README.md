@@ -3,7 +3,8 @@ ece344-bashrc
 
 bashrc file for ece344 development
 
-By Kenny Yu
+Initial credit to Kenny Yu  
+  Modified by Steve Zhang
 
 ## Install
 
@@ -31,7 +32,7 @@ cp /cad2/ece344s/cs161/bin/sys161.conf.sample sys161.conf
 ####Debug Kernel will need 2 terminal opened at same time:  
 1. Run window:  open and wait for debuger connection  
 `kd`   
-2. Debug window, gdb 
+2. Debug window, gdb   
 `kg`  
 using(`target remote unix:.sockets/gdb` ) to join the running socket    
 
