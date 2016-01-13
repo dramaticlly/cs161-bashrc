@@ -36,6 +36,11 @@ os161-debug() {
     bash -c "cd ~/ece344/root && sys161 -w kernel \"$@\""
 }
 
+GeneratenewCscope() {
+    echo 'generate new scope file'
+    bash -c "cd ~/ece344/os161/kern && find . -name '*.[cshS]' > cscope.files"
+}
+
 #seems we dont need this 
 : <<'END'
 os161-user-build() {
@@ -59,7 +64,8 @@ END
 #alias todo='gg TODO'
 alias grep='grep -ni --color'
 alias gtodo='grep r TODO *'
-alias b='cd..'
+alias b='cd ..'
+alias j='cd ~/ece344/os161'
 alias ls='ls --color'
 alias la='ls -la'
 
@@ -77,6 +83,7 @@ alias kd='os161-debug'
 alias kdebug=kd
 alias kg='cd ~/ece344/root && cs161-gdb kernel'
 alias kgdb=kg
+alias nspe='GeneratenewCscope' 
 #alias ub='os161-user-build'
 #alias ubuild=ub
 
