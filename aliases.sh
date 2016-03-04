@@ -13,6 +13,20 @@ os161-build() {
     popd
 }
 
+#TODO, check later
+svn-diff-summarize() {
+    #check if 1st arg is empty string
+    if [ -z "$1" ]; then \
+        echo "Usage: svn diff --summarize -r $1:2"
+        return 1
+    fi
+    if [ -z "$2" ]; then \
+        echo "Usage: svn diff --summarize -r 1:$2"
+        return 1
+    fi
+    svn diff --summarize -r $1:$2
+}
+
 os161-config() {
     if [ -z "$1" ]; then
         echo "Usage: kconfig ASSTN"
@@ -23,9 +37,9 @@ os161-config() {
     popd
     pushd "$HOME/ece344/os161/kern/compile/$1"
     #bmake -s -j4 depend
-    make depend 
+    #make depend 
     popd
-    os161-build "$1"
+    #os161-build "$1"
 }
 
 os161-run() {
@@ -63,7 +77,7 @@ END
 #alias gg='git grep -ni'
 #alias todo='gg TODO'
 alias grep='grep -ni --color'
-alias gtodo='grep r TODO *'
+alias gtodo='grep -r TODO *'
 alias b='cd ..'
 alias j='cd ~/ece344/os161'
 alias ls='ls --color'
@@ -84,6 +98,7 @@ alias kdebug=kd
 alias kg='cd ~/ece344/root && cs161-gdb kernel'
 alias kgdb=kg
 alias nspe='GeneratenewCscope' 
+alias ssd='svn-diff-summarize' 
 #alias ub='os161-user-build'
 #alias ubuild=ub
 
